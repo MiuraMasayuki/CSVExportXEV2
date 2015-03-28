@@ -1,0 +1,24 @@
+<%@ Template Language="C#" TargetLanguage="GX" Description="" %>
+<%@ Assembly Name="GXJ.Patterns.CSVExport" %>
+<%@ Import Namespace="GXJ.Patterns.CSVExport" %>
+<%@ Property Name="Object" Type="Artech.Architecture.Common.Objects.KBObject" %>
+<%@ Property Name="Part" Type="Artech.Architecture.Common.Objects.KBObjectPart" %>
+<%@ Property Name="Instance" Type="Artech.Packages.Patterns.Objects.PatternInstance" %>
+<%@ Property Name="Element" Type="Artech.Packages.Patterns.Objects.PatternInstanceElement" %>
+<%
+	CSVExportInstance myInstance = new CSVExportInstance(Instance);
+%>
+<Part type="<%= PartType.WebForm %>">
+	<Source><![CDATA[
+<body>
+<p>	
+	<%-- Textblock --%>
+	<%= WebForm.TextBlock("TextBlock1", "SubTitle", "CSVfile download") %>
+	
+	<%-- Button --%>
+	<%= WebForm.Button("Button1", "SpecialButtons", "download", "'csvdownload'") %>
+</p>	
+</body>
+]]>
+	</Source>
+</Part>

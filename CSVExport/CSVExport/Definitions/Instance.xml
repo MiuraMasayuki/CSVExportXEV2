@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Pattern Name="CSVExport" Version="0.8.1" RootElement="instance" RootType="Instance"  xmlns="http://schemas.genexus.com/Patterns/InstanceSpecification/v1.0" >
+	<ElementTypes>
+		<ElementType Name="Instance" Caption="CSVExport Pattern Instance" CaptionParameters="" KeyAttribute="" Icon="" >
+			<Attributes />
+			<ChildrenElements>
+        <ChildElement Name="ProcedureObjectForDownload" ElementType="ProcedureObjectForDownload" Multiple="false" Optional="true" />
+        <ChildElement Name="WebpanelObjectForDownload" ElementType="WebpanelObjectForDownload" Multiple="false" Optional="true" />
+        <ChildElement Name="ProcedureObjectForBatchProcess" ElementType="ProcedureObjectForBatchProcess" Multiple="false" Optional="true" />
+
+      </ChildrenElements>
+		</ElementType>
+    <ElementType Name="ProcedureObjectForDownload" Caption="Procedure for exporting and downloding CSV file" KeyAttribute="" Icon="icons\procedure.ico" >
+      <Attributes>
+        <Attribute Name="ExportProcedureObjectName" Type="string" Category="General" Description="This is name of procedure object for export." DefaultValue="&lt;Object&gt;CSVExportPr"  />
+        <Attribute Name="ExportFileSeparator" Type="string" Category="General" Description="This is separator of exported file." DefaultValue=","  />
+        <Attribute Name="ExportFileExtension" Type="string" Category="General" Description="This is extension of exported file." DefaultValue="csv"  />
+        <Attribute Name="ExportFileEncoding" Type="string" Category="General" Description="This is Encoding of exported file." DefaultValue="shift_jis"  />
+        <Attribute Name="HTTPResponseHeaderContentType" Type="string" Category="General" Description="This is Content-Type at respoonse header to downlod." DefaultValue="text/csv"  />
+
+        <Attribute Name="StartCode" Type="code(Events)" Category="Code" Description="Bigining code at the procedure" DefaultValue=""  />
+        <Attribute Name="WhereCode" Type="code(Events)" Category="Code" Description="Inserted code to For each command" DefaultValue=""  />
+        <Attribute Name="EndCode" Type="code(Events)" Category="Code" Description="The code at the termination of procedure" DefaultValue=""  />
+        <Attribute Name="SubCode" Type="code(Events)" Category="Code" Description="The code at final section" DefaultValue=""  />
+
+        <Attribute Name="delimiter" Type="string" Category="String Value" Description="delimiter of string" DefaultValue="" />
+        <Attribute Name="ReplaceSeparatorValue" Type="bool" Category="String Value" Description="if this value is 'true',the procedure replace string separator value to alternative value." DefaultValue="true"  />
+        <Attribute Name="AlternativeValue" Type="string" Category="String Value" Description="AlternativeValue" DefaultValue="、" />
+        
+      </Attributes>
+      <ChildrenElements>
+        <ChildElement Name="Attributes" ElementType="Attributes" Multiple="false" Optional="false"  />
+        <ChildElement Name="Order" ElementType="Order" Multiple="false" Optional="false"  />
+      </ChildrenElements>
+
+    </ElementType>
+    <ElementType Name="Attributes" Caption="Attributes" Icon="icons\attributes.ico">
+      <Attributes />
+      <ChildrenElements>
+        <ChildElement Name="Attribute" ElementType="Attribute" Multiple="true" />
+        <ChildElement Name="variable" ElementType="Variable" Multiple="true" />
+      </ChildrenElements>
+    </ElementType>
+    <ElementType Name="Attribute"  Caption="{0}" CaptionParameters="attribute" KeyAttribute="attribute" Icon="icons\attribute.ico">
+      <Attributes>
+        <Attribute Name="attribute" Type="reference(Attribute)" Description="Attribute that represents the transaction. (For example: CustomerName for Customer)." />
+      </Attributes>
+      <ChildrenElements />
+      <Initialization>
+        <InitializationFrom Type="Attribute" ReferenceProperty="attribute" />
+      </Initialization>
+    </ElementType>
+
+    <ElementType Name="Order" Caption="Order" Icon="icons\Order.ico">
+      <Attributes />
+      <ChildrenElements>
+        <ChildElement Name="attribute" ElementType="OrderAttribute" Multiple="true" />
+      </ChildrenElements>
+    </ElementType>
+    <ElementType Name="OrderAttribute" Caption="{0}" CaptionParameters="attribute" KeyAttribute="attribute" Icon="icons\attribute.ico">
+      <Attributes>
+        <Attribute Name="attribute" Type="reference(Attribute)" Description="Attribute." NotNull="true" />
+        <Attribute Name="ascending" Type="bool" Description="Ascending Order." DefaultValue="true" />
+      </Attributes>
+      <ChildrenElements />
+      <Initialization>
+        <InitializationFrom Type="Attribute" ReferenceProperty="attribute" />
+      </Initialization>
+    </ElementType>
+
+    <ElementType Name="Variable" Caption="{0}" CaptionParameters="name" KeyAttribute="name" Icon="icons\variable.ico">
+      <Attributes>
+        <Attribute Name="name" Type="string" Description="Variable name." />
+        <Attribute Name="domain" Type="reference(Domain)" Description="Domain on which the variable is based." NotNull="true" />
+        <Attribute Name="AssignmentCode" Type="code(Events)" Description="Code used to export" Serialization="CData" />
+      </Attributes>
+      <ChildrenElements />
+    </ElementType>
+
+    <ElementType Name="WebpanelObjectForDownload" Caption="Web panel for download test" KeyAttribute="" Icon="icons\webpanel.ico" >
+      <Attributes>
+        <Attribute Name="MenuObjectName" Type="string" Category="General" Description="This is name of menu calling the procedure object." DefaultValue="&lt;Object&gt;CSVExportMenu"  />
+      </Attributes>
+      <ChildrenElements />
+    </ElementType>
+
+    <ElementType Name="ProcedureObjectForBatchProcess" Caption="Procedure for Batch Process" KeyAttribute="" Icon="icons\procedure.ico" >
+      <Attributes>
+        <Attribute Name="ExportProcedureObjectName" Type="string" Category="General" Description="This is name of procedure object for export." DefaultValue="&lt;Object&gt;CSVExportBatchPr"  />
+        <Attribute Name="ExportFileSeparator" Type="string" Category="General" Description="This is separator of exported file." DefaultValue=","  />
+        <Attribute Name="ExportFileEncoding" Type="string" Category="General" Description="This is Encoding of exported file." DefaultValue="shift_jis"  />
+
+        <Attribute Name="ReadINIfile" Type="enum{true;false}" Category="INI-file" Description="When this property is true, the procedure will read ini-file. " DefaultValue="true"  />
+        <Attribute Name="INIFilePath" Type="string" Category="INI-file" Description="INI-file path" DefaultValue=""  />
+        <Attribute Name="INIFileName" Type="string" Category="INI-file" Description="INI-file name" DefaultValue="&lt;Object&gt;.ini"  />
+        <Attribute Name="ExportedFilepath" Type="string" Category="Default values of Exported File" Description="Exported File path" DefaultValue=""  />
+        <Attribute Name="ExportedFilename" Type="string" Category="Default values of Exported File" Description="Exported File name" DefaultValue="&lt;Object&gt;.csv"  />
+
+        <Attribute Name="StartCode" Type="code(Events)" Category="Code" Description="Bigining code at the procedure" DefaultValue=""  />
+        <Attribute Name="WhereCode" Type="code(Events)" Category="Code" Description="Inserted code to For each command" DefaultValue=""  />
+        <Attribute Name="EndCode" Type="code(Events)" Category="Code" Description="The code at the termination of procedure" DefaultValue=""  />
+        <Attribute Name="SubCode" Type="code(Events)" Category="Code" Description="The code at final section" DefaultValue=""  />
+
+        <Attribute Name="delimiter" Type="string" Category="String Value" Description="delimiter of string" DefaultValue="" />
+        <Attribute Name="ReplaceSeparatorValue" Type="bool" Category="String Value" Description="if this value is 'true',the procedure replace string separator value to alternative value." DefaultValue="true"  />
+        <Attribute Name="AlternativeValue" Type="string" Category="String Value" Description="AlternativeValue" DefaultValue="、" />
+
+      </Attributes>
+      <ChildrenElements>
+        <ChildElement Name="Attributes" ElementType="Attributes" Multiple="false" Optional="false"  />
+        <ChildElement Name="Order" ElementType="Order" Multiple="false" Optional="false"  />
+      </ChildrenElements>
+
+    </ElementType>
+
+  </ElementTypes>
+</Pattern>

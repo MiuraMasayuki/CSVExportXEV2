@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Pattern Name="CSVExport" Version="0.8.1" RootElement="Config" RootType="Config" xmlns="http://schemas.genexus.com/Patterns/InstanceSpecification/v1.0">
+	<ElementTypes>
+		<ElementType Name="Config" Caption="CSVExport Configuration" KeyAttribute=""  Icon="">
+			<Attributes />
+			<ChildrenElements>
+				<ChildElement Name="ProcedureObjectForDownload" ElementType="ProcedureObjectForDownload" Multiple="false" Optional="false" />
+        <ChildElement Name="WebpanelObjectForDownload" ElementType="WebpanelObjectForDownload" Multiple="false" Optional="false"  />
+        <ChildElement Name="ProcedureObjectForBatchProcess" ElementType="ProcedureObjectForBatchProcess" Multiple="false" Optional="false" />
+      </ChildrenElements>
+		</ElementType>
+		<ElementType Name="ProcedureObjectForDownload" Caption="Procedure for exporting and downloding CSV file" KeyAttribute="" Icon="icons\procedure.ico">
+			<Attributes>
+				<Attribute Name="ExportProcedureObjectName" Type="string" Category="General" Description="This is name of procedure object for export." DefaultValue="&lt;Object&gt;CSVExportPr"  />
+        <Attribute Name="ExportFileSeparator" Type="string" Category="General" Description="This is separator of exported file." DefaultValue=","  />
+        <Attribute Name="ExportFileExtension" Type="string" Category="General" Description="This is extension of exported file." DefaultValue="csv"  />
+        <Attribute Name="ExportFileEncoding" Type="string" Category="General" Description="This is Encoding of exported file." DefaultValue="shift_jis"  />
+        <Attribute Name="HTTPResponseHeaderContentType" Type="string" Category="General" Description="This is Content-Type at respoonse header to downlod." DefaultValue="text/csv"  />
+
+        <Attribute Name="StartCode" Type="code(Events)" Category="Code" Description="Bigining code at the procedure" DefaultValue=""  />
+        <Attribute Name="WhereCode" Type="code(Events)" Category="Code" Description="Inserted code to For each command" DefaultValue=""  />
+        <Attribute Name="EndCode" Type="code(Events)" Category="Code" Description="The code at the termination of procedure" DefaultValue=""  />
+        <Attribute Name="SubCode" Type="code(Events)" Category="Code" Description="The code at final section" DefaultValue=""  />
+
+        <Attribute Name="delimiter" Type="string" Category="String Value" Description="delimiter of string" DefaultValue="" />
+        <Attribute Name="ReplaceSeparatorValue" Type="bool" Category="String Value" Description="if this value is 'true',the procedure replace string separator value to alternative value." DefaultValue="true"  />
+        <Attribute Name="AlternativeValue" Type="string" Category="String Value" Description="AlternativeValue" DefaultValue="、" />
+
+      </Attributes>
+			<ChildrenElements />
+		</ElementType>
+    <ElementType Name="WebpanelObjectForDownload" Caption="Web panel for download test" KeyAttribute="" Icon="icons\webpanel.ico">
+      <Attributes>
+        <Attribute Name="MenuObjectName" Type="string" Category="General" Description="This is name of menu calling the procedure object." DefaultValue="&lt;Object&gt;CSVExportMenu"  />
+      </Attributes>
+      <ChildrenElements />
+    </ElementType>
+    <ElementType Name="ProcedureObjectForBatchProcess" Caption="Procedure for For Batch Process" KeyAttribute="" Icon="icons\procedure.ico">
+      <Attributes>
+        <Attribute Name="ExportProcedureObjectName" Type="string" Category="General" Description="This is name of procedure object for export." DefaultValue="&lt;Object&gt;CSVExportBatchPr"  />
+        <Attribute Name="ExportFileSeparator" Type="string" Category="General" Description="This is separator of exported file." DefaultValue=","  />
+        <Attribute Name="ExportFileEncoding" Type="string" Category="General" Description="This is Encoding of exported file." DefaultValue="shift_jis"  />
+
+        <Attribute Name="ReadINIfile" Type="enum{true;false}" Category="INI-file" Description="When this property is true, the procedure will read ini-file. " DefaultValue="true"  />
+        <Attribute Name="INIFilePath" Type="string" Category="INI-file" Description="INI-file path" DefaultValue=""  />
+        <Attribute Name="INIFileName" Type="string" Category="INI-file" Description="INI-file name" DefaultValue="&lt;Object&gt;.ini"  />
+        <Attribute Name="ExportedFilepath" Type="string" Category="Default values of Exported File" Description="Exported File path" DefaultValue=""  />
+        <Attribute Name="ExportedFilename" Type="string" Category="Default values of Exported File" Description="Exported File name" DefaultValue="&lt;Object&gt;.csv"  />
+
+        <Attribute Name="StartCode" Type="code(Events)" Category="Code" Description="Bigining code at the procedure" DefaultValue=""  />
+        <Attribute Name="WhereCode" Type="code(Events)" Category="Code" Description="Inserted code to For each command" DefaultValue=""  />
+        <Attribute Name="EndCode" Type="code(Events)" Category="Code" Description="The code at the termination of procedure" DefaultValue=""  />
+        <Attribute Name="SubCode" Type="code(Events)" Category="Code" Description="The code at final section" DefaultValue=""  />
+
+        <Attribute Name="delimiter" Type="string" Category="String Value" Description="delimiter of string" DefaultValue="" />
+        <Attribute Name="ReplaceSeparatorValue" Type="bool" Category="String Value" Description="if this value is 'true',the procedure replace string separator value to alternative value." DefaultValue="true"  />
+        <Attribute Name="AlternativeValue" Type="string" Category="String Value" Description="AlternativeValue" DefaultValue="、" />
+
+      </Attributes>
+      <ChildrenElements />
+    </ElementType>    
+    
+  </ElementTypes>
+</Pattern>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pattern Publisher="GXJ" Id="e1310617-3283-4c67-b7b8-d56226dd580b" Name="CSVExport" Description="CSVExport" Version="0.85" Icon="icons\CSVexportpattern.ico" xmlns="http://schemas.genexus.com/Patterns/Definition/v1.0">
+<!--
+CSV export pattern(which generates procedure object exporting text-file on GeneXus)
+Copyright (C) 2014 Miura Masayuki, GeneXusJapan
+
+contact:
+https://marketplace.genexus.com/profile.aspx?masamsa
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+-->
+  <Definition>
+		<InstanceName>CSVExport{0}</InstanceName>
+		<InstanceSpecification>Instance.xml</InstanceSpecification>
+		<SettingsSpecification>Settings.xml</SettingsSpecification>
+		<Implementation>GXJ.Patterns.CSVExport.dll</Implementation>
+
+    <DefaultSettings>Resources\DefaultSettings.xml</DefaultSettings>
+		<ParentObjects>
+			<ParentObject Type="Transaction" />
+		</ParentObjects>
+	</Definition>
+
+	<Resources>
+    <!-- Export file(s) to import when the pattern is applied. -->
+		<!--<Resource Id="Resources" Version="0.3" Import="Apply" File="resources\CSVExportResources.xml"/>-->
+	</Resources>
+
+	<Objects>
+		<Object Type="Procedure" Id="CSVExportPr" Name="{Element.ExportProcedureObjectName}" Description="{Element.ExportProcedureObjectName}" Element="instance/ProcedureObjectForDownload">
+			<Part Type="Procedure" Template="templates\CSVExportPrProcedure.dkt" />
+			<Part Type="Variables" Template="templates\CSVExportPrVariables.dkt" />
+    </Object>
+		<Object Type="WebPanel" Id="CSVExportMenu" Name="{Element.MenuObjectName}" Description="{Element.MenuObjectName}" Element="instance/WebpanelObjectForDownload">
+			<Part Type="WebForm" Template="templates\CSVExportMenuWebForm.dkt" />
+			<Part Type="Events" Template="templates\CSVExportMenuEvents.dkt" />
+		</Object>
+    <Object Type="Procedure" Id="CSVExportBatchPr" Name="{Element.ExportProcedureObjectName}" Description="{Element.ExportProcedureObjectName}" Element="instance/ProcedureObjectForBatchProcess">
+      <Part Type="Procedure" Template="templates\CSVExportBatchPrProcedure.dkt" />
+      <Part Type="Variables" Template="templates\CSVExportBatchPrVariables.dkt" />
+    </Object>
+  </Objects>
+
+	<References>
+		<SameInstance>Hard</SameInstance>
+		<DifferentInstance>Weak</DifferentInstance>
+		<External>Hard</External>
+	</References>
+</Pattern>

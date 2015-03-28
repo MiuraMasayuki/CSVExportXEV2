@@ -1,0 +1,29 @@
+<%@ Template Language="C#" TargetLanguage="GX" Description="" %>
+<%@ Assembly Name="GXJ.Patterns.CSVExport" %>
+<%@ Import Namespace="GXJ.Patterns.CSVExport" %>
+<%@ Property Name="Object" Type="Artech.Architecture.Common.Objects.KBObject" %>
+<%@ Property Name="Part" Type="Artech.Architecture.Common.Objects.KBObjectPart" %>
+<%@ Property Name="Instance" Type="Artech.Packages.Patterns.Objects.PatternInstance" %>
+<%@ Property Name="Element" Type="Artech.Packages.Patterns.Objects.PatternInstanceElement" %>
+<%
+	CSVExportInstance myInstance = new CSVExportInstance(Instance);
+%>
+<Part type="<%= PartType.Variables %>">
+	<%= Variables.Basic("Filename", "Filename", eDBType.VARCHAR,1000) %>
+	<%= Variables.Basic("Checker", "Checker", eDBType.NUMERIC, 8) %>
+	<%= Variables.Basic("RetNum", "RetNum", eDBType.NUMERIC, 8) %>
+	
+<%-- Variable based on Window extended data type.etc --%>
+	<%= Variables.Extended("WebSession", "WebSession", "WebSession") %>
+	<%= Variables.Extended("HttpResponse", "HttpResponse", "HttpResponse") %>
+
+<%	
+	foreach (VariableElement var in myInstance.ProcedureObjectForDownload.Attributes.Variables)
+	{
+%>
+	<%= Variables.BasedOnDomain(var.Name, var.Domain) %>
+<%
+	}
+%>
+
+</Part>

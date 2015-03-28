@@ -1,0 +1,17 @@
+<Projects>
+	<Project Name="CSVExport" Location=".">
+		<!-- CSVExport Pattern -->
+    <Files Name="Instance.xml" Location="Definitions" Target="Packages\Patterns\CSVExport" />
+    <Files Name="Settings.xml" Location="Definitions" Target="Packages\Patterns\CSVExport" />
+    <Files Name="Pattern.Pattern" Location="Definitions" Target="Packages\Patterns\CSVExport" />
+    <Files Name="DefaultSettings.xml" Location="Definitions" Target="Packages\Patterns\CSVExport\Resources" />
+    <Files Name="Resources.xml" Location="Definitions" Target="Packages\Patterns\CSVExport\Resources" />
+    <Files Name="*.*" Location="Templates" Target="Packages\Patterns\CSVExport\Templates" />
+    <Files Name="*.*" Location="Icons" Target="Packages\Patterns\CSVExport\Icons" />
+  </Project>
+
+	<!-- CSVExport Patterns helper assemblies -->
+	<Project Name="CSVExportAssemblies" Location=".">
+		<File Name="GXJ.Patterns.CSVExport.dll" Target="Packages\Patterns\CSVExport" />
+	</Project>
+</Projects>
